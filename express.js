@@ -8,8 +8,17 @@ app.listen(8000); // Asynchronous
 var tweets = [];
 
 app.get('/', function(req, res){
-	// No need to define headers ourselves!
-	res.send('Welcome to NodeTwitter');
+	var title = 'Chirpie',
+		header = 'Welcome to Chirpie';
+
+	res.render('index', {
+		locals: {
+			'title': title,
+			'header': header,
+			'tweets': tweets,
+			'stylesheets': ['/public/style/css']
+		}
+	});
 });
 
 app.post('/send', express.bodyParser(), function(req, res){ // bodyParser = middleware
